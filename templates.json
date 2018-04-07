@@ -1,0 +1,83 @@
+[
+  {
+    "type": "container",
+    "title": "Dump1090",
+    "description": "Dump1090 server",
+    "categories": ["Demonstrations"],
+    "platform": "linux",
+    "privileged": true,
+    "image": "opensourcefoundries/dump1090:latest",
+    "ports": ["8080/tcp"],
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/dev/bus/usb",
+        "bind": "/dev/bus/usb"
+      }
+    ]
+  },
+  {
+    "type": "container",
+    "title": "leshan",
+    "description": "Eclipse Foundation's Leshan Server for LWM2M",
+    "categories": ["Device Management"],
+    "network": "bridge",
+    "ports": [
+      "8081/tcp",
+      "5683/udp",
+      "5684/udp"
+    ],
+    "platform": "linux",
+    "image": "opensourcefoundries/leshan:latest",
+    "restart_policy": "unless-stopped",
+    "env" : [
+      {
+        "name": "LESHAN_ARGS",
+        "set": "-wp 8081"
+      }
+    ]
+  },
+  {
+    "type": "container",
+    "title": "hawkbit",
+    "description": "Eclipse Foundation's Hawkbit OTA Server",
+    "categories": ["Device Management"],
+    "network": "bridge",
+    "ports": [
+      "8081/tcp",
+      "5683/udp",
+      "5684/udp"
+    ],
+    "platform": "linux",
+    "image": "opensourcefoundries/hawkbit-update-server:latest",
+    "restart_policy": "unless-stopped"
+  },
+  {
+    "type": "stack",
+    "title": "CockroachDB",
+    "description": "CockroachDB cluster",
+    "note": "Deploys an insecure CockroachDB cluster",
+    "categories": ["database"],
+    "platform": "linux",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/cockroachdb/docker-stack.yml"
+    }
+  },
+    {
+    "type": "container",
+    "title": "fro",
+    "description": "Eclipse Foundation's Hawkbit OTA Server",
+    "categories": ["Device Management"],
+    "network": "bridge",
+    "ports": [
+      "8081/tcp",
+      "5683/udp",
+      "5684/udp"
+    ],
+    "platform": "linux",
+    "image": "opensourcefoundries/hawkbit-update-server:latest",
+    "restart_policy": "unless-stopped"
+  }
+] }
+}

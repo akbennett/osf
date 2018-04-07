@@ -1,0 +1,1 @@
+# OSF templates for Portainer
