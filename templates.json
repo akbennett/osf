@@ -44,9 +44,7 @@
     "categories": ["Device Management"],
     "network": "bridge",
     "ports": [
-      "8081/tcp",
-      "5683/udp",
-      "5684/udp"
+      "8080/tcp"
     ],
     "platform": "linux",
     "image": "opensourcefoundries/hawkbit-update-server:latest",
@@ -54,22 +52,29 @@
   },
   {
     "type": "container",
-    "title": "Basic Internet Gateway",
-    "description": "A suite of containers",
-    "categories": ["Device Management"],
+    "title": "The OSF Gateway",
+    "description": "A demonstration set of containers to create a BLE IoT gateway",
+    "categories": ["IoT", "Gateway"],
     "env": [
         {
           "name": "TARGET",
-          "label": "simple-gateway.yml"
-      },
-      {
+          "description": "The set of containers to launch",
+          "set": "simple-gateway.yml"
+        },
+        {
         "name": "ACCOUNT",
-        "label": "akbennettß"
+        "description": "The account on docker hub",
+        "set": "akbennett"
+        }
+    ],
+    "volumes": [
+      {
+        "container": "/var/run/docker.sock",
+        "bind": "/var/run/docker.sock"
       }
     ],
     "platform": "linux",
-    "image": "akbennett/compose-launcher:latest",
-
+    "restart_policy": "no",
+    "image": "akbennett/compose-launcher:latest"
   }
-] }
-}
+]
