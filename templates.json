@@ -53,31 +53,23 @@
     "restart_policy": "unless-stopped"
   },
   {
-    "type": "stack",
-    "title": "CockroachDB",
-    "description": "CockroachDB cluster",
-    "note": "Deploys an insecure CockroachDB cluster",
-    "categories": ["database"],
-    "platform": "linux",
-    "repository": {
-      "url": "https://github.com/portainer/templates",
-      "stackfile": "stacks/cockroachdb/docker-stack.yml"
-    }
-  },
-    {
     "type": "container",
-    "title": "fro",
-    "description": "Eclipse Foundation's Hawkbit OTA Server",
+    "title": "Basic Internet Gateway",
+    "description": "A suite of containers",
     "categories": ["Device Management"],
-    "network": "bridge",
-    "ports": [
-      "8081/tcp",
-      "5683/udp",
-      "5684/udp"
+    "env": [
+        {
+          "name": "TARGET",
+          "label": "simple-gateway.yml"
+      },
+      {
+        "name": "ACCOUNT",
+        "label": "akbennettß"
+      }
     ],
     "platform": "linux",
-    "image": "opensourcefoundries/hawkbit-update-server:latest",
-    "restart_policy": "unless-stopped"
+    "image": "akbennett/compose-launcher:latest",
+
   }
 ] }
 }
